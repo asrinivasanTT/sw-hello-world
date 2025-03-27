@@ -43,4 +43,4 @@ WORKDIR /usr/tt-umd
 
 RUN cmake -B build -G Ninja -DTT_UMD_BUILD_TESTS=ON -DBUILD_SHARED_LIBS=OFF && cmake --build build
 
-ENTRYPOINT ["bash", "-c", "./build/test/umd/api/api_tests && ./build/test/umd/wormhole_b0/unit_tests && ./build/test/umd/wormhole_b0/run_unit_tests && ./build/umd/test_pcie_device/test_pcie_device && ./build/umd/misc/umd_misc_tests"]
+ENTRYPOINT ["bash", "-c", "./build/test/umd/api/api_tests && ./build/test/umd/wormhole_b0/unit_tests && ./build/test/umd/test_pcie_device/test_pcie_device && ./build/test/umd/misc/umd_misc_tests"]
