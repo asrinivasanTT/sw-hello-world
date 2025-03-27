@@ -41,8 +41,6 @@ RUN git clone --recurse-submodules https://github.com/tenstorrent/tt-umd /usr/tt
 
 WORKDIR /usr/tt-umd
 
-RUN cmake -B build -G Ninja -DTT_UMD_BUILD_TESTS=ON -DBUILD_SHARED_LIBS=OFF && cmake --build build --target umd_tests
+RUN cmake -B build -G Ninja -DTT_UMD_BUILD_TESTS=ON -DBUILD_SHARED_LIBS=OFF && cmake --build build
 
-RUN ln -s build/test/umd/${ARCH_NAME}/unit_tests run_unit_tests && chmod ugo+x run_unit_tests
-
-CMD ["./run_unit_tests"]
+ENTRYPOINT ["bash", "-c", "./build/test/umd/api/api_tests && ./build/test/umd/wormhole_b0/unit_tests && ./build/test/umd/test_pcie_device/test_pcie_device && ./build/test/umd/misc/umd_misc_tests"]
