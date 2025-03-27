@@ -23,7 +23,8 @@ curl \
 wget \
 libhwloc-dev \
 ninja-build \
-patchelf
+patchelf \
+&& rm -rf /var/lib/apt/lists/*
 
 # Install Clang-17
 RUN apt install -y lsb-release wget software-properties-common gnupg && wget https://apt.llvm.org/llvm.sh \
@@ -41,8 +42,6 @@ RUN git clone --recurse-submodules https://github.com/tenstorrent/tt-umd /usr/tt
 
 WORKDIR /usr/tt-umd
 
-RUN cmake -B build -G Ninja -DTT_UMD_BUILD_TESTS=ON -DBUILD_SHARED_LIBS=OFF && cmake --build build --target umd_tests
+RUN cmake -B build -G Ninja -DTT_UMD_BUILD_TESTS=ON -DBUILD_SHARED_LIBS=OFF && cmake --build build
 
-RUN ln -s build/test/umd/${ARCH_NAME}/unit_tests run_unit_tests && chmod ugo+x run_unit_tests
-
-CMD ["./run_unit_tests"]
+CMD ["./build/test/umd/${ARCH_NAME}/api/api_tests", "&&", "./build/test/umd/${ARCH_NAME}/unit_tests", "&&", "./build/test/umd/${ARCH_NAME}/run_unit_tests", "&&", "./build/umd/test_pcie_device/test_pcie_device", "&&", "./build/umd/misc/umd_misc_tests"]
