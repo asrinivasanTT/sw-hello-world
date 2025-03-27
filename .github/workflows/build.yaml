@@ -43,4 +43,4 @@ jobs:
           pull: true
           push: true
           build-args: 'ARCH_NAME=${{ matrix.arch }}'
-          tags: ghcr.io/asrinivasanTT/sw-hello-world/${{ matrix.repo }}-hello-world:latest-${{ matrix.arch }}
+          tags: ghcr.io/asrinivasantt/sw-hello-world/${{ matrix.repo }}-hello-world:latest-${{ matrix.arch }}
