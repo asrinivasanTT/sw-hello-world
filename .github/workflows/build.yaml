@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         arch: [wormhole_b0]
-        repo: [tt-metal, tt-umd]
+        repo: [tt-umd]
     steps:
       # to help build against other platforms
       - name: Set up QEMU
