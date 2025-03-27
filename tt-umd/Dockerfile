@@ -23,8 +23,7 @@ curl \
 wget \
 libhwloc-dev \
 ninja-build \
-patchelf \
-&& rm -rf /var/lib/apt/lists/*
+patchelf
 
 # Install Clang-17
 RUN apt install -y lsb-release wget software-properties-common gnupg && wget https://apt.llvm.org/llvm.sh \
