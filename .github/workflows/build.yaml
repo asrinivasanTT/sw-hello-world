@@ -17,7 +17,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        arch: [wormhole_b0]
+        arch: [wormhole_b0, blackhole]
         repo: [tt-umd]
     steps:
       # to help build against other platforms
